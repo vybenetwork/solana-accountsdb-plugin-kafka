@@ -122,6 +122,13 @@ impl GeyserPlugin for KafkaPlugin {
             return Ok(());
         }
 
+        match status {
+            PluginSlotStatus::Confirmed => (),
+            _ => {
+                return Ok(());
+            }
+        };
+
         let event = SlotStatusEvent {
             slot,
             parent: parent.unwrap_or(0),
